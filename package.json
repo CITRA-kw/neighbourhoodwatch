@@ -1,7 +1,7 @@
 {
-  "name": "bgp_enforcer",
+  "name": "neighbourhoodwatch",
   "version": "0.1.0",
-  "description": "CITRA BGP Enforcer to compare Prefixes annonunced to Internet Vs. annonunce to IX.KW",
+  "description": "Tool to analysis Local BGP & Traffic in Kuwait.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
