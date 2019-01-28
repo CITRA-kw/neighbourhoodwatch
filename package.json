@@ -1,0 +1,26 @@
+{
+  "name": "bgp_enforcer",
+  "version": "0.1.0",
+  "description": "CITRA BGP Enforcer to compare Prefixes annonunced to Internet Vs. annonunce to IX.KW",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "BGP",
+    "CITRA",
+    "Enforcer",
+    "Prefixes",
+    "IX.KW",
+    "Datahub"
+  ],
+  "author": "rktcloud Engineering Team",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "puppeteer": "^1.11.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "underscore": "^1.9.1"
+  }
+}
