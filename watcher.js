@@ -81,29 +81,50 @@ const bgp = {
 		ixkwrs1: null, //TODO Peering needs to add by CITRA team
 		ixkwrs2: null,
 	},
-	prefixCompare: function (target) {
-		//compare and output results
+	prefixCompare: function () {
+		Promise.all([bgpview.getPrefixes(bgp.qnet.asn), ixkw.scrapePrefixes(bgp.qnet.ixkwrs1)]).then(function(results) {
+			let df  = bgp.prefixDiff(results[1],results[0]);
+			console.log(df);
+			let objDiff = results[1].length - results[0].length;
+			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + results[1].length + "/ bgpview:" + results[0].length);
+		});
+	},
+	prefixDiff: function (a1, a2) {
+	    var a = [], diff = [];
+	    for (var i = 0; i < a1.length; i++) {
+	        a[a1[i]] = true;
+	    }
+	    for (var i = 0; i < a2.length; i++) {
+	        if (a[a2[i]]) {
+	            delete a[a2[i]];
+	        } else {
+	            a[a2[i]] = true;
+	        }
+	    }
+	    for (var k in a) {
+	        diff.push(k);
+	    }
+    return diff;
 	}
 }
 //BGPVIEW.io API Interaction
-const bgpView = {
-	getPrefixes: function(asn) {
+const bgpview = {
+	getRequest: function(asn) {
 		return request({
 			"method":"GET", 
       		"uri": "https://api.bgpview.io/asn/"+asn+"/prefixes",
       		"json": true,
       		"headers": {
-        		"User-Agent": "neighbourWatch"
+        		"User-Agent": "neighbourwatch"
       		}
 		});
 	},
-	filterPrefixes: function(name, asn) {
-		let routes = [];
-		bgpView.getPrefixes(asn).then(function(result) {
-  			let prefix =  _.pluck(result.data.ipv4_prefixes, 'prefix');
-			routes = prefix;
+	getPrefixes: function(asn) {
+		let data = bgpview.getRequest(asn).then(function(result) {
+  			let routes =  _.pluck(result.data.ipv4_prefixes, 'prefix');
+  			return routes;
 		});
-		return routes;
+		return data;
 	}
 }
 //IXKW looking glass scraping Interaction
@@ -126,9 +147,8 @@ const ixkw = {
 
 //------------------------------- function_code -------------------------------//
 
-//bgpView.filterPrefixes(bgpKW.zainkw.name, bgpKW.zainkw.asn);
-let data = bgpView.filterPrefixes(bgp.gulfnet.name,bgp.gulfnet.asn);
-console.dir(data);
+bgp.prefixCompare();
+
 
 
 
