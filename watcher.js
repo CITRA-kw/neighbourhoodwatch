@@ -3,6 +3,7 @@ const request = require('request-promise');
 const _ = require("underscore");
 const $ = require('cheerio');
 const puppeteer = require('puppeteer');
+const unique = require('array-unique');
 
 const bgp = {
 	gulfnet: {
@@ -82,11 +83,28 @@ const bgp = {
 		ixkwrs2: null,
 	},
 	prefixCompare: function () {
-		Promise.all([bgpview.getPrefixes(bgp.qnet.asn), ixkw.scrapePrefixes(bgp.qnet.ixkwrs1)]).then(function(results) {
+		Promise.all([bgpview.getPrefixes(bgp.gulfnet.asn), ixkw.scrapePrefixes(bgp.gulfnet.ixkwrs1)]).then(function(results) {
 			let df  = bgp.prefixDiff(results[1],results[0]);
-			console.log(df);
+			console.table(df);
 			let objDiff = results[1].length - results[0].length;
-			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + results[1].length + "/ bgpview:" + results[0].length);
+			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + results[1].length + " / bgpview: " + results[0].length);
+		});
+	},
+	prefixDualPeerCompare: function () {
+		Promise.all([bgpview.getPrefixes(bgp.kems.asn), ixkw.scrapePrefixes(bgp.kems.ixkwrs1_0), ixkw.scrapePrefixes(bgp.kems.ixkwrs1_1), ixkw.scrapePrefixes(bgp.kems.ixkwrs2_0), ixkw.scrapePrefixes(bgp.kems.ixkwrs2_1)]).then(function(results) {
+			let merge = unique(results[1].concat(results[2],results[3],results[4]));
+			let df  = bgp.prefixDiff(merge,results[0]);
+			console.table(df);
+			let objDiff = merge.length - results[0].length;
+			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + results[1].length + " / bgpview: " + results[0].length);
+		});
+	},
+	prefixDualASCompare: function () {
+		Promise.all([bgpview.getPrefixes(bgp.kems.asn), ixkw.scrapePrefixes()]).then(function(results) {
+			let df  = bgp.prefixDiff(results[1],results[0]);
+			console.table(df);
+			let objDiff = results[1].length - results[0].length;
+			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + results[1].length + " / bgpview: " + results[0].length);
 		});
 	},
 	prefixDiff: function (a1, a2) {
@@ -130,24 +148,41 @@ const bgpview = {
 //IXKW looking glass scraping Interaction
 const ixkw = {
 		scrapePrefixes:  async function(targetURL) {	
-  			  	const browser = await puppeteer.launch();
-			  	const page = await browser.newPage();
-			  	await page.goto(targetURL);
-			  	let routenetworks = await page.evaluate(() => {
-			  		let data = [];
-			  		let routes = document.getElementsByClassName('route-network');
-			  		for (var route of routes)
-			  			data.push(route.textContent);
-			  		return data;
-			  	});
-			  	await browser.close();
-			  	return routenetworks;
+			  	const browser = await puppeteer.launch();
+		  	const page = await browser.newPage();
+		  	await page.goto(targetURL);
+		  	let routenetworks = await page.evaluate(() => {
+		  		let data = [];
+		  		let routes = document.getElementsByClassName('route-network');
+		  		for (var route of routes)
+		  			data.push(route.textContent);
+		  		return data;
+		  	});
+		  	await browser.close();
+		  	return routenetworks;
 		}
+}
+//HE BGP Scaping Interaction
+const he = {
+	scrapePrefixes: async function(targetURL) {
+  		const browser = await puppeteer.launch();
+	  	const page = await browser.newPage();
+	  	await page.goto(targetURL);
+	  	let routenetworks = await page.evaluate(() => {
+	  		let data = [];
+	  		let routes = document.getElementsByClassName('route-network');
+	  		for (var route of routes)
+	  			data.push(route.textContent);
+	  		return data;
+	  	});
+	  	await browser.close();
+	  	return routenetworks;
+	}
 }
 
 //------------------------------- function_code -------------------------------//
 
-bgp.prefixCompare();
+bgp.prefixDualPeerCompare();
 
 
 
