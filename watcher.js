@@ -100,11 +100,13 @@ const bgp = {
 		});
 	},
 	prefixDualASCompare: function () {
-		Promise.all([bgpview.getPrefixes(bgp.kems.asn), ixkw.scrapePrefixes()]).then(function(results) {
-			let df  = bgp.prefixDiff(results[1],results[0]);
+		Promise.all([bgpview.getPrefixes(bgp.fast.asn), bgpview.getPrefixes(bgp.kwdata.asn), ixkw.scrapePrefixes(bgp.fast.ixkwrs1), ixkw.scrapePrefixes(bgp.fast.ixkwrs2), ixkw.scrapePrefixes(bgp.kwdata.ixkwrs1, ixkw.scrapePrefixes(bgp.kwdata.ixkwrs2))]).then(function(results) {
+			let merge_bgpview = unique(results[0].concat(results[1]));
+			let merge_ixkw = unique(results[2].concat(results[3], results[4], results[5]));
+			let df  = bgp.prefixDiff(merge_ixkw,merge_bgpview);
 			console.table(df);
 			let objDiff = results[1].length - results[0].length;
-			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + results[1].length + " / bgpview: " + results[0].length);
+			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + merge_ixkw.length + " / bgpview: " + merge_bgpview.length);
 		});
 	},
 	prefixDiff: function (a1, a2) {
@@ -181,8 +183,7 @@ const he = {
 }
 
 //------------------------------- function_code -------------------------------//
-
-bgp.prefixDualPeerCompare();
+bgp.prefixDualASCompare();
 
 
 
