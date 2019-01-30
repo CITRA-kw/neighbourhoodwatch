@@ -97,7 +97,7 @@ const bgp = {
 			let df  = bgp.prefixDiff(merge,results[0]);
 			console.table(df);
 			let objDiff = merge.length - results[0].length;
-			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + results[1].length + " / bgpview: " + results[0].length);
+			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + merge.length + " / bgpview: " + results[0].length);
 		});
 	},
 	prefixDualASCompare: function () { //TODO No kwdata rs defined
