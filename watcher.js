@@ -83,11 +83,12 @@ const bgp = {
 		ixkwrs2: null,
 	},
 	prefixCompare: function () {
-		Promise.all([bgpview.getPrefixes(bgp.gulfnet.asn), ixkw.scrapePrefixes(bgp.gulfnet.ixkwrs1)]).then(function(results) {
-			let df  = bgp.prefixDiff(results[1],results[0]);
+		Promise.all([bgpview.getPrefixes(bgp.gulfnet.asn), ixkw.scrapePrefixes(bgp.qnet.ixkwrs1), ixkw.scrapePrefixes(bgp.qnet.ixkwrs2)]).then(function(results) {
+			let merge = unique(results[1].concat(results[2]));
+			let df  = bgp.prefixDiff(merge,results[0]);
 			console.table(df);
-			let objDiff = results[1].length - results[0].length;
-			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + results[1].length + " / bgpview: " + results[0].length);
+			let objDiff = merge.length - results[0].length;
+			console.log("ixkw difference to Internet: " + objDiff + " / ixkw: " + merge.length + " / bgpview: " + results[0].length);
 		});
 	},
 	prefixDualPeerCompare: function () {
@@ -193,7 +194,7 @@ const he = {
 }
 
 //------------------------------- function_code -------------------------------//
-bgp.prefixDualASPeerCompare();
+bgp.prefixCompare();
 
 
 
