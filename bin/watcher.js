@@ -1,87 +1,16 @@
-//neighbourWatch Tool
+#!/usr/bin/env node
+
 const request = require('request-promise');
 const _ = require("underscore");
 const $ = require('cheerio');
 const puppeteer = require('puppeteer');
 const unique = require('array-unique');
+const program = require('commander');
+const colors = require('colors');
+
+const list_speakers = require('../lib/list_speakers');
 
 const bgp = {
-	gulfnet: {
-		name: 'Gulfnet', 
-		asn: 3225,
-		dualPeering: false,
-		multiAS: false,
-		ixkwrs1: "http://lg.ix.kw/alice/routeservers/0/protocols/AS3225_1/routes",
-		ixkwrs2: null, //TODO Need to fix by CITRA Team
-	},
-	kems: {
-		name: 'KEMS', 
-		asn: 6412,
-		dualPeering: true,
-		multiAS: true,
-		ixkwrs1_0: 'http://lg.ix.kw/alice/routeservers/0/protocols/AS6412_1/routes',
-		ixkwrs2_0: 'http://lg.ix.kw/alice/routeservers/1/protocols/AS6412_1/routes',
-		ixkwrs1_1: 'http://lg.ix.kw/alice/routeservers/0/protocols/AS6412_3/routes',
-		ixkwrs2_1: 'http://lg.ix.kw/alice/routeservers/1/protocols/AS6412_3/routes',
-	},
-	zajilkw: {
-		name: 'Zajil Kuwait', 
-		asn: 42781,
-		dualPeering: true,
-		multiAS: true,
-		ixkwrs1_0: null, //TODO Peering needs to add by CITRA team
-		ixkwrs2_0: null,
-		ixkwrs1_1: null,
-		ixkwrs2_1: null,
-	},
-	qnet: {
-		name: 'Qualitynet', 
-		asn: 9155,
-		dualPeering: false,
-		multiAS: false,
-		ixkwrs1: "http://lg.ix.kw/alice/routeservers/0/protocols/AS9155_1/routes",
-		ixkwrs2: "http://lg.ix.kw/alice/routeservers/1/protocols/AS9155_1/routes",
-	},
-	fast: {
-		name: 'Fasttelco', 
-		asn: 21050,
-		dualPeering: false,
-		multiAS: true,
-		ixkwrs1: "http://lg.ix.kw/alice/routeservers/0/protocols/AS21050_1/routes",
-		ixkwrs2: "http://lg.ix.kw/alice/routeservers/1/protocols/AS21050_1/routes",
-	},
-	kwdata: {
-		name: 'Kuwait Data Center', 
-		asn: 43852,
-		dualPeering: false,
-		multiAS: true,
-		ixkwrs1: null, //TODO Peering needs to add by CITRA team
-		ixkwrs2: null,
-	},
-	zainkw: {
-		name: 'Zain Kuwait', 
-		asn: 42961,
-		dualPeering: false,
-		multiAS: false,
-		ixkwrs1: "http://lg.ix.kw/alice/routeservers/0/protocols/AS42961_3/routes", 
-		ixkwrs2: "http://lg.ix.kw/alice/routeservers/1/protocols/AS42961_3/routes",
-	},
-	ooredookw: {
-		name: 'Ooredoo Kuwait', 
-		asn: 29357,
-		dualPeering: false,
-		multiAS: false,
-		ixkwrs1: null, //TODO Peering needs to add by CITRA team
-		ixkwrs2: null,
-	},
-	vivakw: {
-		name: 'Viva Kuwait', 
-		asn: 47589,
-		dualPeering: false,
-		multiAS: false,
-		ixkwrs1: null, //TODO Peering needs to add by CITRA team
-		ixkwrs2: null,
-	},
 	prefixCompare: function () {
 		Promise.all([bgpview.getPrefixes(bgp.gulfnet.asn), ixkw.scrapePrefixes(bgp.qnet.ixkwrs1), ixkw.scrapePrefixes(bgp.qnet.ixkwrs2)]).then(function(results) {
 			let merge = unique(results[1].concat(results[2]));
@@ -192,9 +121,24 @@ const he = {
 	  	return routenetworks;
 	}
 }
+//------------------------------- commander_program_fucntional_code -------------------------------//
+/**
+program
+  .version('0.1.0')
+  .option('-s, --speakers', 'List all Kuwait BGP Speakers')
+  .option('-l, --list', 'List difference of [speaker]')
+  .option('-a, --all', 'List difference of all speakers')
+  .option('-h, --help', 'Show Help Menu')
+**/
+program
+  .command('speakers') // sub-command name
+  .alias('s') // alternative sub-command is `al`
+  .description('List all Kuwait BGP Speakers') // command description
+  .action(function () {
+        list_speakers();
+    });
 
-//------------------------------- function_code -------------------------------//
-bgp.prefixCompare();
+program.parse(process.argv);
 
 
 
