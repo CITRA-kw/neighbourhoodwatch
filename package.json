@@ -1,6 +1,6 @@
 {
   "name": "neighbourhoodwatch",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "preferGlobal": true,
   "bin": {
     "neighbourhoodwatch": "./bin/watcher.js"

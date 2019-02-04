@@ -6,6 +6,7 @@ const colors = require('colors');
 const list_speakers = require('../lib/list_speakers.js');
 const $ = require('../lib/bgp.js');
 const { speakers } = require('../lib/values.js');
+const _ = require('../lib/missing.js');
 
 //List_Speaker
 program
@@ -50,7 +51,7 @@ program
   .alias('m') // alternative sub-command is `al`
   .description('List all missing prefixes in Kuwait') // command description
   .action(function () {
-        console.log("missing Under development!");
+        _.showAllMissing()
    });
 
 //process arg from bash
