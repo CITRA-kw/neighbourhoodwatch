@@ -13,6 +13,22 @@ npm install -g neighbourhoodwatch
 Neighbourhoodwatch supports multiple functionality:
 
 #### list/ls
+List all differences between selected speaker and ixkw route servers.
+```
+neighbourhoodwatch list [speaker alias]
+```
+
+#### all/a
+List all differences between selected ixkw route servers and the internet for all speakers
+```
+neighbourhoodwatch all
+```
+
+#### missing/m
+List all missing prefixes from ixkw route servers compare to the internet for all Kuwait registered IPs.
+```
+neighbourhoodwatch missing
+```
 
 ### Supported ISPs / MNOs
 | BGP Speaker   | Command Alias     |
@@ -20,4 +36,10 @@ Neighbourhoodwatch supports multiple functionality:
 | Gulfnet       | gulfnet           |
 | KEMS          | kems              |
 | Zajil Kuwait  | (Unfied with kems)|
-| KEMS          | kems              |
+| Qualitynet    | qnet              |
+| Fasttelco     | fast              |
+| Kuwait Data Center| (Unfied with fast)|
+| Zain Kuwait   | zainkw            | 
+| Ooredoo Kuwait| ooredookw         |  
+| Viva Kuwait   | Not Supported     | 
+| Mada Kuwait   | madakw            |

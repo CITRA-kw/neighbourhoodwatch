@@ -1,11 +1,5 @@
 #!/usr/bin/env node
 
-/**
-1) TODO scrape ixkw correct filter items change rs1/rs2 values.
-2) Output design for all and normal 
-3) Fix bgp imports
-**/
-
 const program = require('commander');
 const colors = require('colors');
 
@@ -34,8 +28,10 @@ program
 				$.prefixCompare(speaker.asn,speaker.ixkwrs1,speaker.ixkwrs2);
 			} else if (speaker.alias == alias && speaker.dualPeering == true && speaker.multiAS == false) {
 				$.prefixDualPeerCompare(speaker.asn,speaker.ixkwrs1_0,speaker.ixkwrs1_1,speaker.ixkwrs2_0,speaker.ixkwrs2_1);
-			} else if (speaker.alias == alias && speaker.dualPeering == false && speaker.multiAS == true) {
-				$.prefixDualASCompare()//HERE
+			} else if (speaker.alias == alias && speaker.dualPeering == false && speaker.multiAS == true) { 
+				$.prefixDualASCompare(speaker.asn,43852,speaker.ixkwrs1,speaker.ixkwrs2);
+			} else if (speaker.alias == alias && speaker.dualPeering == true && speaker.multiAS == true) {
+				$.prefixDualASPeerCompare(speaker.asn,42781,speaker.ixkwrs1_0,speaker.ixkwrs1_1,speaker.ixkwrs2_0,speaker.ixkwrs2_1);
 			}
  		});
 	});
@@ -46,7 +42,7 @@ program
   .alias('a') // alternative sub-command is `al`
   .description('List difference of all speakers in ixkw') // command description
   .action(function () {
-        //TODO
+        console.log("all Under development!");
    });
 
 program
@@ -54,15 +50,7 @@ program
   .alias('m') // alternative sub-command is `al`
   .description('List all missing prefixes in Kuwait') // command description
   .action(function () {
-        //TODO
-   });
-
-program
-  .command('missing') // sub-command name
-  .alias('m') // alternative sub-command is `al`
-  .description('List all missing prefixes in Kuwait') // command description
-  .action(function () {
-		//TODO
+        console.log("missing Under development!");
    });
 
 //process arg from bash
