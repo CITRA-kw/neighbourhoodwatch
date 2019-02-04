@@ -34,8 +34,8 @@ program
 				$.prefixCompare(speaker.asn,speaker.ixkwrs1,speaker.ixkwrs2);
 			} else if (speaker.alias == alias && speaker.dualPeering == true && speaker.multiAS == false) {
 				$.prefixDualPeerCompare(speaker.asn,speaker.ixkwrs1_0,speaker.ixkwrs1_1,speaker.ixkwrs2_0,speaker.ixkwrs2_1);
-			} else if (speaker.alias == alias && speaker.dualPeering == true && speaker.multiAS == false) {
-				$.prefixDualASCompare()
+			} else if (speaker.alias == alias && speaker.dualPeering == false && speaker.multiAS == true) {
+				$.prefixDualASCompare()//HERE
 			}
  		});
 	});
@@ -55,6 +55,14 @@ program
   .description('List all missing prefixes in Kuwait') // command description
   .action(function () {
         //TODO
+   });
+
+program
+  .command('missing') // sub-command name
+  .alias('m') // alternative sub-command is `al`
+  .description('List all missing prefixes in Kuwait') // command description
+  .action(function () {
+		//TODO
    });
 
 //process arg from bash
