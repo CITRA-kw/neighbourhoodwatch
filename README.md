@@ -49,12 +49,6 @@ neighbourhoodwatch list gulfnet
 ixkw difference to Internet: -21 / ixkw: 74 / Internet: 95
 ```
 
-#### all | a
-List all differences between selected ixkw route servers and the internet for all speakers
-```
-neighbourhoodwatch all
-```
-
 #### missing | m
 List all missing prefixes from ixkw route servers compare to the internet for all Kuwait registered IPs.
 ```
@@ -74,3 +68,13 @@ neighbourhoodwatch missing
 | Ooredoo Kuwait| ooredookw         |  
 | Viva Kuwait   | Not Connected     | 
 | Mada Kuwait   | madakw            |
+
+## Roadmap
+Please open an issue for additional requested features.
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Please make sure to update tests as appropriate.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

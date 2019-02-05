@@ -37,15 +37,6 @@ program
  		});
 	});
 
-//List all speaker Difference to IX
-program
-  .command('all') // sub-command name
-  .alias('a') // alternative sub-command is `al`
-  .description('List difference of all speakers in ixkw') // command description
-  .action(function () {
-        console.log("all Under development!");
-   });
-
 program
   .command('missing') // sub-command name
   .alias('m') // alternative sub-command is `al`
