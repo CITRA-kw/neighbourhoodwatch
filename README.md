@@ -62,15 +62,15 @@ neighbourhoodwatch missing
 ```
 
 ### Supported ISPs / MNOs
-| BGP Speaker   | Command Alias     |
+| BGP Speaker   | Speaker Alias     |
 | ------------- | -------------     |
 | Gulfnet       | gulfnet           |
 | KEMS          | kems              |
-| Zajil Kuwait  | (Unfied with kems)|
+| Zajil Kuwait  | kems  *Unified    |
 | Qualitynet    | qnet              |
 | Fasttelco     | fast              |
-| Kuwait Data Center| (Unfied with fast)|
+| Kuwait Data Center| fast *Unified |
 | Zain Kuwait   | zainkw            | 
 | Ooredoo Kuwait| ooredookw         |  
-| Viva Kuwait   | Not Supported     | 
+| Viva Kuwait   | Not Connected     | 
 | Mada Kuwait   | madakw            |
