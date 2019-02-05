@@ -9,6 +9,13 @@ Use NPM to install:
 ```
 npm install -g neighbourhoodwatch
 ```
+
+### Update
+Use NPM to update:
+```
+npm update -g neighbourhoodwatch
+```
+
 ### Usage
 Neighbourhoodwatch supports multiple functionality:
 
