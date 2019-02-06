@@ -63,7 +63,22 @@ List all missing prefixes from ixkw route servers compare to the internet for al
 ```
 neighbourhoodwatch missing
 ```
+#### missing example
+```
+....
 
+│   739   │   '188.71.96.0/20'   │
+│   740   │  '217.69.176.0/24'   │
+│   741   │  '217.69.187.0/24'   │
+│   742   │   '78.89.135.0/24'   │
+│   743   │   '78.89.160.0/22'   │
+│   744   │   '78.89.164.0/22'   │
+│   745   │   '78.89.176.0/22'   │
+└─────────┴──────────────────────┘
+Total Routes of in ixkw: 1715
+Total Routes of Kuwait: 1846
+Difference: -131
+```
 #### speakers | s
 List all BGP Speakers in Kuwait
 ```
@@ -91,6 +106,7 @@ Ooredoo Kuwait / AS29357
 Viva Kuwait / AS47589
 Mada Kuwait / AS47442
 
+...
 ```
 
 ### Supported ISPs / MNOs

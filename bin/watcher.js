@@ -8,6 +8,8 @@ const $ = require('../lib/bgp.js');
 const { speakers } = require('../lib/values.js');
 const _ = require('../lib/missing.js');
 
+process.setMaxListeners(20); //Fixed Memory Leak Warnings
+
 //List_Speaker
 program
   .command('speakers') // sub-command name
