@@ -27,7 +27,9 @@ neighbourhoodwatch list [speaker alias]
 #### list example
 ```
 neighbourhoodwatch list gulfnet
+
 //output
+
 ┌─────────┬────────────────────┐
 │ (index) │       Values       │
 ├─────────┼────────────────────┤
@@ -75,6 +77,35 @@ neighbourhoodwatch missing
 | Ooredoo Kuwait| ooredookw         |  
 | Viva Kuwait   | Not Connected     | 
 | Mada Kuwait   | madakw            |
+
+#### speakers | s
+List all BGP Speakers in Kuwait
+```
+neighbourhoodwatch speakers
+```
+#### speakers example
+```
+neighbourhoodwatch speakers
+
+//output
+
+Kuwait BGP Speakers
+-------------------
+
+ISPs/MNOs
+---------
+Gulfnet / AS3225
+KEMS / AS6412
+Zajil Kuwait / AS42781
+Qualitynet / AS9155
+Fasttelco / AS21050
+Kuwait Data Center / AS43852
+Zain Kuwait / AS42961
+Ooredoo Kuwait / AS29357
+Viva Kuwait / AS47589
+Mada Kuwait / AS47442
+
+```
 
 ## Roadmap
 Please open an issue for additional requested features.
