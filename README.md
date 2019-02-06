@@ -64,20 +64,6 @@ List all missing prefixes from ixkw route servers compare to the internet for al
 neighbourhoodwatch missing
 ```
 
-### Supported ISPs / MNOs
-| BGP Speaker   | Speaker Alias     |
-| ------------- | -------------     |
-| Gulfnet       | gulfnet           |
-| KEMS          | kems              |
-| Zajil Kuwait  | kems  *Unified    |
-| Qualitynet    | qnet              |
-| Fasttelco     | fast              |
-| Kuwait Data Center| fast *Unified |
-| Zain Kuwait   | zainkw            | 
-| Ooredoo Kuwait| ooredookw         |  
-| Viva Kuwait   | Not Connected     | 
-| Mada Kuwait   | madakw            |
-
 #### speakers | s
 List all BGP Speakers in Kuwait
 ```
@@ -106,6 +92,20 @@ Viva Kuwait / AS47589
 Mada Kuwait / AS47442
 
 ```
+
+### Supported ISPs / MNOs
+| BGP Speaker   | Speaker Alias     |
+| ------------- | -------------     |
+| Gulfnet       | gulfnet           |
+| KEMS          | kems              |
+| Zajil Kuwait  | kems  *Unified    |
+| Qualitynet    | qnet              |
+| Fasttelco     | fast              |
+| Kuwait Data Center| fast *Unified |
+| Zain Kuwait   | zainkw            | 
+| Ooredoo Kuwait| ooredookw         |  
+| Viva Kuwait   | Not Connected     | 
+| Mada Kuwait   | madakw            |
 
 ## Roadmap
 Please open an issue for additional requested features.
