@@ -133,7 +133,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Contributers 
-Ali H AlShamali https://github.com/shamalco
+Ali H AlShamali -- https://github.com/shamalco
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
