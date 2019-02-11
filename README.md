@@ -1,8 +1,10 @@
-# Neighbourwatch(BETA)
-The goal of Neighbourwatch is to ensure all local traffic remains local to Kuwait. Local Traffic leaks causing additional performance degradation, security risk, waste of resources, and has a negative financial impact. Neighbourwatch is a tool that compares routes advertised to the Internet are advised to the ixkw exchange (Kuwait Local Traffic Exchange) and generates a reports.
+# Neighbourhoodwatch(BETA)
+The goal of Neighbourhoodwatch is to ensure all local traffic remains local to Kuwait. Local Traffic leaks causing additional performance degradation, security risk, waste of resources, and has a negative financial impact. Neighbourwatch is a tool that compares routes advertised to the Internet are advised to the ixkw exchange (Kuwait Local Traffic Exchange) and generates a reports.
+
+neighbourhoodwatch tool was originally written by Ali H AlShamali(https://github.com/shamalco)
 
 ## Getting Started
-Using Neighbourwatch is easy to install and use.
+Using Neighbourhoodwatch is easy to install and use.
 
 ### Installing
 Use NPM to install:
@@ -20,7 +22,7 @@ npm update -g neighbourhoodwatch
 Neighbourhoodwatch supports multiple functionality:
 
 #### list | ls
-List all differences between selected speaker and ixkw route servers.
+List all differences to ixkw between selected speaker and ixkw route servers.
 ```
 neighbourhoodwatch list [speaker alias]
 ```
@@ -125,6 +127,9 @@ Mada Kuwait / AS47442
 
 ## Roadmap
 Please open an issue for additional requested features.
+
+## Contributers 
+Ali H AlShamali -- https://github.com/shamalco
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

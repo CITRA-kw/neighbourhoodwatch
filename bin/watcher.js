@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 
+/**
+TODO List:
+1) Spinner ora
+2) return only difference to ix kw
+3) JSON Output
+4) Better Tables
+5) Cleanier Output
+**/
+
 const program = require('commander');
 const colors = require('colors');
 
